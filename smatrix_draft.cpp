@@ -9,11 +9,11 @@ void get_smatrix()
 {
 	int msize = 12;
 	int **smtx;
-	smtx = (int**)malloc(3 * sizeof(int)); //выделяем память на три строчки массива для value, column и row ненулевых э-тов матрицы
+	smtx = (int**)malloc(3 * sizeof(int)); //РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РЅР° С‚СЂРё СЃС‚СЂРѕС‡РєРё РјР°СЃСЃРёРІР° РґР»СЏ value, column Рё row РЅРµРЅСѓР»РµРІС‹С… СЌ-С‚РѕРІ РјР°С‚СЂРёС†С‹
 	int elcount = 1;
 	for (int i = 0; i < 3; i++)
 	{
-		smtx[i] = (int*)malloc(elcount * sizeof(int)); //выделяем память на первый столбец массива
+		smtx[i] = (int*)malloc(elcount * sizeof(int)); //РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РЅР° РїРµСЂРІС‹Р№ СЃС‚РѕР»Р±РµС† РјР°СЃСЃРёРІР°
 	}
 	ifstream data("sparsematrix.txt");
 	if (data.is_open())
@@ -32,7 +32,7 @@ void get_smatrix()
 					elcount++;
 					for (int i = 0; i < 3; i++)
 					{
-						smtx[i] = (int*)realloc(smtx[i], elcount * sizeof(int)); //выделяем память на следующий столбец массива
+						smtx[i] = (int*)realloc(smtx[i], elcount * sizeof(int)); //РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЃС‚РѕР»Р±РµС† РјР°СЃСЃРёРІР°
 					}
 				}
 			}
@@ -42,7 +42,7 @@ void get_smatrix()
 	elcount = elcount - 1;
 	for (int i = 0; i < 3; i++)
 	{
-		smtx[i] = (int*)realloc(smtx[i], elcount * sizeof(int)); //убираем лишний столбец массива
+		smtx[i] = (int*)realloc(smtx[i], elcount * sizeof(int)); //СѓР±РёСЂР°РµРј Р»РёС€РЅРёР№ СЃС‚РѕР»Р±РµС† РјР°СЃСЃРёРІР°
 	}
 	for (int i = 0; i < 3; i++)
 	{
@@ -50,7 +50,7 @@ void get_smatrix()
 			cout << smtx[i][j] << " ";
 		cout << endl;
 	}
-	//освобождение памяти
+	//РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё
 	for (int i = 0; i < 3; i++)
 	{
 		free(smtx[i]);
