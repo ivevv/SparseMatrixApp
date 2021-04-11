@@ -9,7 +9,7 @@ void get_smatrix()
 {
 	int msize = 12;
 	int **smtx;
-	smtx = (int**)malloc(3 * sizeof(int)); //выделяем память на три строчки массива для value, column и row ненулевых э-тов матрицы
+	smtx = (int**)malloc(3 * sizeof(int)); //выделяем память на три строчки массива для value column и row ненулевых э-тов матрицы
 	int elcount = 1;
 	for (int i = 0; i < 3; i++)
 	{
@@ -44,6 +44,7 @@ void get_smatrix()
 	{
 		smtx[i] = (int*)realloc(smtx[i], elcount * sizeof(int)); //убираем лишний столбец массива
 	}
+	//выводила на экран только для проверки но по сути это уже обход по строкам = половина 3-его пункта
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < elcount; j++)
