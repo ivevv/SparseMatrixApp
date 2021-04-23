@@ -6,6 +6,10 @@
 
 using namespace std;
 
+//reading sparse matrix from file
+//each row & column is a circular doubly linked list
+//each list head is an element of an array (row/col)
+
 void addNode(int val, int i, int j, node **&row, node **&col)
 {
 	node *el = new node;
