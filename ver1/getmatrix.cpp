@@ -34,7 +34,7 @@ void addNode(int val, int i, int j, node **&row, node **&col)
 	el->up = el;
 }
 
-void getMatrix(node **&row, node **&col, int size, int &count)
+void getMatrix(node **&row, node **&col, int size, int &count, int base_elem)
 {
 	ifstream data("sparsematrix.txt");
 	if (data.is_open())
@@ -45,7 +45,7 @@ void getMatrix(node **&row, node **&col, int size, int &count)
 			for (int j = 0; j < size; j++) //column
 			{
 				data >> temp;
-				if (temp != 0)
+				if (temp != base_elem)
 				{
 					addNode(temp, i, j, row, col);
 					count++;
