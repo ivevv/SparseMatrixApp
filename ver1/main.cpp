@@ -28,13 +28,14 @@ int main()
 		col[i] = makeHead();
 	}
 	int count = 0;
-	getMatrix(row, col, size, count);
+	int base_elem = 0;
+	getMatrix(row, col, size, count, base_elem);
 	rowTraversal(row, size);
 	colTraversal(col, size);
 
 	std::cout << "sum of all elements: " << sum_all(row, col, size) << "\n";
-    std::cout << "mul of all elements: " << mul_all(row, col, size) << "\n";
-    std::cout << "min: " << min(row, col, size) << "\n";
-    std::cout << "max: " << max(row, col, size) << "\n";
+    	std::cout << "mul of all elements: " << mul_all(row, col, size) << "\n";
+    	std::cout << "min: " << min(row, col, size) << "\n";
+    	std::cout << "max: " << max(row, col, size) << "\n";
 	return 0;
 }
