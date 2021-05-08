@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include <malloc.h>
 #include "smatrix.h"
+#include "sum_all.h"
+#include "mul_all.h"
+#include "min_max.h"
 
 using namespace std;
 
@@ -28,5 +31,10 @@ int main()
 	getMatrix(row, col, size, count);
 	rowTraversal(row, size);
 	colTraversal(col, size);
+
+	std::cout << "sum of all elements: " << sum_all(row, col, size) << "\n";
+    std::cout << "mul of all elements: " << mul_all(row, col, size) << "\n";
+    std::cout << "min: " << min(row, col, size) << "\n";
+    std::cout << "max: " << max(row, col, size) << "\n";
 	return 0;
 }

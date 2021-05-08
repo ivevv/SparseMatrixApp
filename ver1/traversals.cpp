@@ -4,40 +4,38 @@
 #include <malloc.h>
 #include "smatrix.h"
 
-using namespace std;
-
 void rowTraversal(node **row, int size)
 {
-	node *temp = new node;
+	node *temp;
 	for (int i = 0; i < size; i++)
 	{
 		temp = row[i]->right;
-		if (temp != NULL)
+		if (temp != nullptr)
 		{
 			while (temp != row[i])
 			{
-				cout << temp->val << " ";
+				std::cout << temp->val << " ";
 				temp = temp->right;
 			}
 		}
 	}
-	cout << endl;
+	std::cout << std::endl;
 }
 
 void colTraversal(node **col, int size)
 {
-	node *temp = new node;
+	node *temp;
 	for (int i = 0; i < size; i++)
 	{
 		temp = col[i]->down;
-		if (temp != NULL)
+		if (temp != nullptr)
 		{
 			while (temp != col[i])
 			{
-				cout << temp->val << " ";
+                std::cout << temp->val << " ";
 				temp = temp->down;
 			}
 		}
 	}
-	cout << endl;
+    std::cout << std::endl;
 }

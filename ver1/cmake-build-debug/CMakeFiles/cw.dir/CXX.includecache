@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/kiril/programming/term4_project/ver1/min_max.cpp
+min_max.h
+C:/Users/kiril/programming/term4_project/ver1/min_max.h
+
+C:/Users/kiril/programming/term4_project/ver1/min_max.h
+smatrix.h
+C:/Users/kiril/programming/term4_project/ver1/smatrix.h
+limits
+-
+
+C:/Users/kiril/programming/term4_project/ver1/smatrix.h
+
