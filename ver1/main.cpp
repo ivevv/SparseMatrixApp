@@ -7,8 +7,6 @@
 #include "mul_all.h"
 #include "min_max.h"
 
-using namespace std;
-
 void addNode(int val, int i, int j, node **&row, node **&col);
 void getMatrix(node **&row, node **&col, int size, int &count);
 node * makeHead();
