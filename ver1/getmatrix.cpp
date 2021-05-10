@@ -62,5 +62,7 @@ node * makeHead()
 	head->up = head;
 	head->left = head;
 	head->right = head;
+	head->col = 13;
+	head->row = 13;
 	return head;
 };
