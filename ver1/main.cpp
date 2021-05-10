@@ -2,19 +2,20 @@
 #include <fstream>
 #include <cstdlib>
 #include <malloc.h>
+#include <string>
 #include "smatrix.h"
 #include "sum_all.h"
 #include "mul_all.h"
 #include "min_max.h"
 
 void addNode(int val, int i, int j, node **&row, node **&col);
-void getMatrix(node **&row, node **&col, int size, int &count);
+void getMatrix(node **&row, node **&col, int size, int &count, std::string filename);
 node * makeHead();
 void rowTraversal(node **row, int size);
 void colTraversal(node **row, int size);
 
 //just a draft to test current functions
-//should probably write a menu with all options of working w/matrix
+
 int main()
 {
 	int size = 12;
@@ -26,8 +27,11 @@ int main()
 		col[i] = makeHead();
 	}
 	int count = 0;
-	int base_elem = 0;
-	getMatrix(row, col, size, count, base_elem);
+	int base_elem = 0; //for sparsematrix1
+	//int base_elem = 5; //for sparsematrix1
+	std::string = "sparsematrix1.txt"; //for sparsematrix1
+	//std::string = "sparsematrix2.txt"; //for sparsematrix2
+	getMatrix(row, col, size, count, base_elem, filename);
 	rowTraversal(row, size);
 	colTraversal(col, size);
 
