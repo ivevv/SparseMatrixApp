@@ -28,7 +28,7 @@ int main()
 	}
 	int count = 0;
 	int base_elem = 0; //for sparsematrix1
-	//int base_elem = 5; //for sparsematrix1
+	//int base_elem = 5; //for sparsematrix2
 	std::string = "sparsematrix1.txt"; //for sparsematrix1
 	//std::string = "sparsematrix2.txt"; //for sparsematrix2
 	getMatrix(row, col, size, count, base_elem, filename);
