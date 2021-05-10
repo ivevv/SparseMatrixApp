@@ -30,7 +30,7 @@ void addNode(int val, int i, int j, node **&row, node **&col)
 		temp = temp->down;
 	}
 	temp->down = el;
-	el->up = el;
+	el->up = temp;
 }
 
 void getMatrix(node **&row, node **&col, int size, int &count, int base_elem, std::string filename)
