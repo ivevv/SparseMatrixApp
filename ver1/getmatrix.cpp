@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <malloc.h>
+#include <string>
 #include "smatrix.h"
 
 //reading sparse matrix from file
@@ -32,9 +33,9 @@ void addNode(int val, int i, int j, node **&row, node **&col)
 	el->up = el;
 }
 
-void getMatrix(node **&row, node **&col, int size, int &count, int base_elem)
+void getMatrix(node **&row, node **&col, int size, int &count, int base_elem, std::string filename)
 {
-	std::ifstream data("sparsematrix.txt");
+	std::ifstream data(filename);
 	if (data.is_open())
 	{
 		int temp;
