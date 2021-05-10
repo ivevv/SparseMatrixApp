@@ -147,4 +147,8 @@ void getSaddlePoints(node **row, node **col, int size, int base_elem)
 	{
 		std::cout << "This matrix doesn't have saddle points!" << std::endl;
 	}
+	else
+	{
+		std::cout << std::endl;
+	}
 }
