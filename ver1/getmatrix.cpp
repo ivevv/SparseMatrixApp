@@ -33,7 +33,7 @@ void addNode(int val, int i, int j, node **&row, node **&col)
 	el->up = temp;
 }
 
-void getMatrix(node **&row, node **&col, int size, int &count, int base_elem, std::string filename)
+void getMatrix(node **&row, node **&col, int size, int base_elem, std::string filename)
 {
 	std::ifstream data(filename);
 	if (data.is_open())
@@ -47,7 +47,6 @@ void getMatrix(node **&row, node **&col, int size, int &count, int base_elem, st
 				if (temp != base_elem)
 				{
 					addNode(temp, i, j, row, col);
-					count++;
 				}
 			}
 		}
@@ -62,7 +61,5 @@ node * makeHead()
 	head->up = head;
 	head->left = head;
 	head->right = head;
-	head->col = 13;
-	head->row = 13;
 	return head;
 };
