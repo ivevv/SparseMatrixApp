@@ -9,7 +9,7 @@
 #include "min_max.h"
 
 void addNode(int val, int i, int j, node **&row, node **&col);
-void getMatrix(node **&row, node **&col, int size, std::string filename);
+void getMatrix(node **&row, node **&col, int size, int base_elem, std::string filename);
 node * makeHead();
 void rowTraversal(node **row, int size);
 void colTraversal(node **row, int size);
