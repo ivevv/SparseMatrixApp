@@ -9,7 +9,7 @@
 #include "min_max.h"
 
 void addNode(int val, int i, int j, node **&row, node **&col);
-void getMatrix(node **&row, node **&col, int size, int &count, std::string filename);
+void getMatrix(node **&row, node **&col, int size, std::string filename);
 node * makeHead();
 void rowTraversal(node **row, int size);
 void colTraversal(node **row, int size);
@@ -26,12 +26,11 @@ int main()
 		row[i] = makeHead();
 		col[i] = makeHead();
 	}
-	int count = 0;
 	int base_elem = 0; //for sparsematrix1
 	//int base_elem = 5; //for sparsematrix2
 	std::string = "sparsematrix1.txt"; //for sparsematrix1
 	//std::string = "sparsematrix2.txt"; //for sparsematrix2
-	getMatrix(row, col, size, count, base_elem, filename);
+	getMatrix(row, col, size, base_elem, filename);
 	rowTraversal(row, size);
 	colTraversal(col, size);
 
