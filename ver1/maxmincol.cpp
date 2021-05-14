@@ -58,5 +58,5 @@ void maxMinCol(node **col, int size, int base_elem)
 			colId = i;
 		}
 	}
-	std::cout << std::endl << max << "(column " << colId << ")" << std::endl;
+	std::cout << << max << " (column " << colId << ")" << std::endl;
 }
