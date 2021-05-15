@@ -1,3 +1,0 @@
-C:/Users/kiril/programming/term4_project/ver1/cmake-build-debug/CMakeFiles/cw.dir
-C:/Users/kiril/programming/term4_project/ver1/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/kiril/programming/term4_project/ver1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
