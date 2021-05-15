@@ -1,8 +1,4 @@
-#include <iostream>
-#include <cstdlib>
-#include <malloc.h>
-#include <limits>
-#include "smatrix.h"
+#include "saddlepoints.h"
 
 bool checkColMin(node **col, node *elem, int base_elem, int size)
 {

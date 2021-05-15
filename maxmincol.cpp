@@ -1,8 +1,4 @@
-#include <iostream>
-#include <cstdlib>
-#include <malloc.h>
-#include <limits>
-#include "smatrix.h"
+#include "maxmincol.h"
 
 void maxMinCol(node **col, int size, int base_elem)
 {
@@ -58,5 +54,5 @@ void maxMinCol(node **col, int size, int base_elem)
 			colId = i;
 		}
 	}
-	std::cout << << max << " (column " << colId << ")" << std::endl;
+	std::cout << max << " (column " << colId << ")" << std::endl;
 }

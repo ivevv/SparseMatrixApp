@@ -61,5 +61,8 @@ node * makeHead()
 	head->up = head;
 	head->left = head;
 	head->right = head;
+	head->row = -1;
+	head->col = -1;
+	head->val = 0;
 	return head;
 };

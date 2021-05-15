@@ -1,8 +1,4 @@
-#include <iostream>
-#include <cstdlib>
-#include <malloc.h>
-#include <limits>
-#include "smatrix.h"
+#include "minmaxrow.h"
 
 void minMaxRow(node **row, int size, int base_elem)
 {
@@ -58,5 +54,5 @@ void minMaxRow(node **row, int size, int base_elem)
 			rowId = i;
 		}
 	}
-	std::cout << << min << " (row " << rowId << ")" << std::endl;
+	std::cout << min << " (row " << rowId << ")" << std::endl;
 }

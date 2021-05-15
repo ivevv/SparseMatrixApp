@@ -1,8 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <malloc.h>
-#include "smatrix.h"
+#include "traversals.h"
 
 void rowTraversal(node **row, int size)
 {
