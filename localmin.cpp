@@ -1,305 +1,51 @@
 #include "localmin.h"
 
-bool checkRowNeighborMin(node *elem, node *n8br, int base_elem, char dir)
+bool isLocalMin(node* elem, node **row, int size, int base_elem)
 {
-	if (dir == 'r')
+	std::vector<int> n8brs;
+	checkAndAddValueOfNode(n8brs, elem, -1,  0, row, size, base_elem); // up
+	checkAndAddValueOfNode(n8brs, elem, -1,  1, row, size, base_elem); // up right
+	checkAndAddValueOfNode(n8brs, elem,  0,  1, row, size, base_elem); // right
+	checkAndAddValueOfNode(n8brs, elem,  1,  1, row, size, base_elem); // down right
+	checkAndAddValueOfNode(n8brs, elem,  1,  0, row, size, base_elem); // down
+	checkAndAddValueOfNode(n8brs, elem,  1, -1, row, size, base_elem); // down left
+	checkAndAddValueOfNode(n8brs, elem,  0, -1, row, size, base_elem); // left
+	checkAndAddValueOfNode(n8brs, elem, -1, -1, row, size, base_elem); // up left
+
+	for(auto val : n8brs)
 	{
-		if (n8br->col == (elem->col + 1))
-		{
-			if (n8br->val <= elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		else
-		{
-			if (base_elem < elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
+		if(val <= elem->val)
+			return false;
 	}
-	else
-	{
-		if (n8br->col == (elem->col - 1))
-		{
-			if (n8br->val <= elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		else
-		{
-			if (base_elem < elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-	}
+	return true;
 }
 
-bool checkColNeighborMin(node *elem, node *n8br, int base_elem, char dir)
+void localMin(node **row, node **col, int size, int base_elem)
 {
-	if (dir == 'd')
+	int locCount = 0;
+	node *elem, *n8br;
+	bool isMin = true;
+	bool check;
+	for (int i = 0; i < size; i++)
 	{
-		if (n8br->row == (elem->row + 1))
+		elem = row[i]->right;
+		if (elem != nullptr)
 		{
-			if (n8br->val <= elem->val)
+			while (elem != row[i])
 			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		else
-		{
-			if (base_elem < elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
+				if (isLocalMin(elem, row, size, base_elem))
+				{
+					locCount++;
+					std::cout << elem->val << " (" << elem->row
+						<< ", " << elem->col << ") ";
+				}
+				elem = elem->right;
 			}
 		}
 	}
-	else
+	if (locCount == 0)
 	{
-		if (n8br->row == (elem->row - 1))
-		{
-			if (n8br->val <= elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		else
-		{
-			if (base_elem < elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
+		std::cout << "This matrix doesn't have local minimums!";
 	}
-}
-
-bool checkDiagNeighborMin(node *elem, node *n8br, int base_elem, char colDir, char rowDir)
-{
-	bool temp;
-	if (colDir == 'd')
-	{
-		if (n8br->row == (elem->row + 1))
-		{
-			temp = checkRowNeighborMin(elem, n8br, base_elem, rowDir);
-			return temp;
-		}
-		else
-		{
-			if (base_elem < elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-	}
-	else
-	{
-		if (n8br->row == (elem->row - 1))
-		{
-			temp = checkRowNeighborMin(elem, n8br, base_elem, rowDir);
-			return temp;
-		}
-		else
-		{
-			if (base_elem < elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-	}
-}
-
- void localMin(node **row, node **col, int size, int base_elem)
-{
-	 int locCount = 0;
-	 node *elem, *n8br;
-	 bool isMin = true;
-	 bool check;
-	 for (int i = 0; i < size; i++)
-	 {
-		 elem = row[i]->right;
-		 if (elem != nullptr)
-		 {
-			 while (elem != row[i])
-			 {
-				 if (i == 0)
-				 {
-					 n8br = elem->down;
-					 check = checkColNeighborMin(elem, n8br, base_elem, 'd');
-					 if (check == false)
-					 {
-						 isMin = false;
-					 }
-					 n8br = elem->right;
-					 check = checkRowNeighborMin(elem, n8br, base_elem, 'r');
-					 if (check == false)
-					 {
-						 isMin = false;
-					 }
-					 n8br = n8br->down;
-					 check = checkDiagNeighborMin(elem, n8br, base_elem, 'd', 'r');
-					 if (check == false)
-					 {
-						 isMin = false;
-					 }
-					 n8br = elem->left;
-					 check = checkRowNeighborMin(elem, n8br, base_elem, 'l');
-					 if (check == false)
-					 {
-						 isMin = false;
-					 }
-					 n8br = n8br->down;
-					 check = checkDiagNeighborMin(elem, n8br, base_elem, 'd', 'l');
-					 if (check == false)
-					 {
-						 isMin = false;
-					 }
-				 }
-				 else
-				 {
-					 if (i == (size - 1))
-					 {
-						 n8br = elem->up;
-						 check = checkColNeighborMin(elem, n8br, base_elem, 'u');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = elem->right;
-						 check = checkRowNeighborMin(elem, n8br, base_elem, 'r');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = n8br->up;
-						 check = checkDiagNeighborMin(elem, n8br, base_elem, 'u', 'r');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = elem->left;
-						 check = checkRowNeighborMin(elem, n8br, base_elem, 'l');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = n8br->up;
-						 check = checkDiagNeighborMin(elem, n8br, base_elem, 'u', 'l');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-					 }
-					 else
-					 {
-						 n8br = elem->up;
-						 check = checkColNeighborMin(elem, n8br, base_elem, 'u');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = n8br->left;
-						 check = checkDiagNeighborMin(elem, n8br, base_elem, 'u', 'l');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = elem->left;
-						 check = checkRowNeighborMin(elem, n8br, base_elem, 'l');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = n8br->down;
-						 check = checkDiagNeighborMin(elem, n8br, base_elem, 'd', 'l');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = elem->down;
-						 check= checkColNeighborMin(elem, n8br, base_elem, 'd');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = n8br->right;
-						 check = checkDiagNeighborMin(elem, n8br, base_elem, 'd', 'r');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = elem->right;
-						 check = checkRowNeighborMin(elem, n8br, base_elem, 'r');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-						 n8br = n8br->up;
-						 check = checkDiagNeighborMin(elem, n8br, base_elem, 'd', 'r');
-						 if (check == false)
-						 {
-							 isMin = false;
-						 }
-					 }
-				 }
-				 if (isMin == true)
-				 {
-					 locCount++;
-					 std::cout << elem->val << " (" << elem->row
-						 << ", " << elem->col << ") ";
-				 }
-				 elem = elem->right;
-			 }
-		 }
-	 }
-	 if (locCount == 0)
-	 {
-		 std::cout << "This matrix doens't have local minimums!" << std::endl;
-	 }
-	 else
-	 {
-		 std::cout << std::endl;
-	 }
+	std::cout << std::endl;
 }

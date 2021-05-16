@@ -1,174 +1,23 @@
 #include "localmax.h"
 
-bool checkRowNeighborMax(node *elem, node *n8br, int base_elem, char dir)
+bool isLocalMax(node* elem, node **row, int size, int base_elem)
 {
-	if (dir == 'r')
-	{
-		if (n8br->col == (elem->col + 1))
-		{
-			if (n8br->val >= elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		else
-		{
-			if (base_elem > elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-	}
-	else
-	{
-		if (n8br->col == (elem->col - 1))
-		{
-			if (n8br->val >= elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		else
-		{
-			if (base_elem > elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-	}
-}
+	std::vector<int> n8brs;
+	checkAndAddValueOfNode(n8brs, elem, -1,  0, row, size, base_elem); // up
+	checkAndAddValueOfNode(n8brs, elem, -1,  1, row, size, base_elem); // up right
+	checkAndAddValueOfNode(n8brs, elem,  0,  1, row, size, base_elem); // right
+	checkAndAddValueOfNode(n8brs, elem,  1,  1, row, size, base_elem); // down right
+	checkAndAddValueOfNode(n8brs, elem,  1,  0, row, size, base_elem); // down
+	checkAndAddValueOfNode(n8brs, elem,  1, -1, row, size, base_elem); // down left
+	checkAndAddValueOfNode(n8brs, elem,  0, -1, row, size, base_elem); // left
+	checkAndAddValueOfNode(n8brs, elem, -1, -1, row, size, base_elem); // up left
 
-bool checkColNeighborMax(node *elem, node *n8br, int base_elem, char dir)
-{
-	if (dir == 'd')
+	for(auto val : n8brs)
 	{
-		if (n8br->row == (elem->row + 1))
-		{
-			if (n8br->val >= elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		else
-		{
-			if (base_elem > elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
+		if(val >= elem->val)
+			return false;
 	}
-	else
-	{
-		if (n8br->row == (elem->row - 1))
-		{
-			if (n8br->val >= elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-		else
-		{
-			if (base_elem > elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-	}
-}
-
-bool checkDiagNeighborMax(node *elem, node *n8br, int base_elem, char colDir, char rowDir)
-{
-	bool temp;
-	if (colDir == 'd')
-	{
-		if (n8br->row == (elem->row + 1))
-		{
-			temp = checkRowNeighborMax(elem, n8br, base_elem, rowDir);
-			return temp;
-		}
-		else
-		{
-			if (base_elem > elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-	}
-	else
-	{
-		if (n8br->row == (elem->row - 1))
-		{
-			temp = checkRowNeighborMax(elem, n8br, base_elem, rowDir);
-			return temp;
-		}
-		else
-		{
-			if (base_elem > elem->val)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
-	}
-}
-
-bool isLocalMax(node* elem)
-{
-	// ### 
-	// overall algo:
-	// get elem
-	// check if nullptr
-	// check index diff => compare with base_elem
-	// check value who is max
-	// ###
-
-	std::vector<int> neighbours;
-
-	//UP
-	node up = elem->up;
-	if(up->row != -1)
-	{
-		
-	}
+	return true;
 }
 
 void localMax(node **row, node **col, int size, int base_elem)
@@ -184,127 +33,7 @@ void localMax(node **row, node **col, int size, int base_elem)
 		{
 			while (elem != row[i])
 			{
-				if (i == 0)
-				{
-					n8br = elem->down;
-					check = checkColNeighborMax(elem, n8br, base_elem, 'd');
-					if (check == false)
-					{
-						isMax = false;
-					}
-					n8br = elem->right;
-					check = checkRowNeighborMax(elem, n8br, base_elem, 'r');
-					if (check == false)
-					{
-						isMax = false;
-					}
-					n8br = n8br->down;
-					check = checkDiagNeighborMax(elem, n8br, base_elem, 'd', 'r');
-					if (check == false)
-					{
-						isMax = false;
-					}
-					n8br = elem->left;
-					check = checkRowNeighborMax(elem, n8br, base_elem, 'l');
-					if (check == false)
-					{
-						isMax = false;
-					}
-					n8br = n8br->down;
-					check = checkDiagNeighborMax(elem, n8br, base_elem, 'd', 'l');
-					if (check == false)
-					{
-						isMax = false;
-					}
-				}
-				else
-				{
-					if (i == (size - 1))
-					{
-						n8br = elem->up;
-						check = checkColNeighborMax(elem, n8br, base_elem, 'u');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = elem->right;
-						check = checkRowNeighborMax(elem, n8br, base_elem, 'r');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = n8br->up;
-						check = checkDiagNeighborMax(elem, n8br, base_elem, 'u', 'r');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = elem->left;
-						check = checkRowNeighborMax(elem, n8br, base_elem, 'l');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = n8br->up;
-						check = checkDiagNeighborMax(elem, n8br, base_elem, 'u', 'l');
-						if (check == false)
-						{
-							isMax = false;
-						}
-					}
-					else
-					{
-						n8br = elem->up;
-						check = checkColNeighborMax(elem, n8br, base_elem, 'u');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = n8br->left;
-						check = checkDiagNeighborMax(elem, n8br, base_elem, 'u', 'l');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = elem->left;
-						check = checkRowNeighborMax(elem, n8br, base_elem, 'l');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = n8br->down;
-						check = checkDiagNeighborMax(elem, n8br, base_elem, 'd', 'l');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = elem->down;
-						check = checkColNeighborMax(elem, n8br, base_elem, 'd');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = n8br->right;
-						check = checkDiagNeighborMax(elem, n8br, base_elem, 'd', 'r');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = elem->right;
-						check = checkRowNeighborMax(elem, n8br, base_elem, 'r');
-						if (check == false)
-						{
-							isMax = false;
-						}
-						n8br = n8br->up;
-						check = checkDiagNeighborMax(elem, n8br, base_elem, 'd', 'r');
-						if (check == false)
-						{
-							isMax = false;
-						}
-					}
-				}
-				if (isMax == true)
+				if (isLocalMax(elem, row, size, base_elem))
 				{
 					locCount++;
 					std::cout << elem->val << " (" << elem->row
@@ -316,10 +45,7 @@ void localMax(node **row, node **col, int size, int base_elem)
 	}
 	if (locCount == 0)
 	{
-		std::cout << "This matrix doens't have local maximums!" << std::endl;
+		std::cout << "This matrix doens't have local maximums!";
 	}
-	else
-	{
-		std::cout << std::endl;
-	}
+	std::cout << std::endl;
 }

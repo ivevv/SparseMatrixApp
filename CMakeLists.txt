@@ -13,4 +13,5 @@ add_executable(cw
     maxmincol.cpp
     localmin.cpp
     localmax.cpp
+    getvalueat.cpp
 )

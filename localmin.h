@@ -4,12 +4,12 @@
 #include <iostream>
 #include <cstdlib>
 #include <malloc.h>
+#include <vector>
 
 #include "smatrix.h"
+#include "getvalueat.h"
 
-bool checkRowNeighborMin(node *elem, node *n8br, int base_elem, char dir);
-bool checkColNeighborMin(node *elem, node *n8br, int base_elem, char dir);
-bool checkDiagNeighborMin(node *elem, node *n8br, int base_elem, char colDir, char rowDir);
+bool isLocalMin(node* elem, node **row, int size, int base_elem);
 void localMin(node **row, node **col, int size, int base_elem);
 
 #endif // LOCAL_MIN_H
