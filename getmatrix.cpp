@@ -36,21 +36,24 @@ void addNode(int val, int i, int j, node **&row, node **&col)
 void getMatrix(node **&row, node **&col, int size, int base_elem, std::string filename)
 {
 	std::ifstream data(filename);
-	if (data.is_open())
+	if (!data.is_open())
 	{
-		int temp;
-		for (int i = 0; i < size; i++) // row
+		throw std::runtime_error("file " + filename + " not found");
+	}
+
+	int value;
+	for (int i = 0; i < size; i++) // row
+	{
+		for (int j = 0; j < size; j++) //column
 		{
-			for (int j = 0; j < size; j++) //column
+			data >> value;
+			if (value != base_elem)
 			{
-				data >> temp;
-				if (temp != base_elem)
-				{
-					addNode(temp, i, j, row, col);
-				}
+				addNode(value, i, j, row, col);
 			}
 		}
 	}
+
 	data.close();
 }
 
