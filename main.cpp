@@ -84,12 +84,12 @@ void interface(node **&row, node **&col, int size)
 	{
 	case 1:
 	{
-		processMatrix(row, col, size, 0, "sparsematrix1.txt");
+		processMatrix(row, col, size, 0, "../matrices/sparsematrix1.txt");
 	}
 	break;
 	case 2:
 	{
-		processMatrix(row, col, size, 5, "sparsematrix2.txt");
+		processMatrix(row, col, size, 5, "../matrices/sparsematrix2.txt");
 	}
 	break;
 	default:
