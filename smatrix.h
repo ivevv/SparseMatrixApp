@@ -1,4 +1,3 @@
-#pragma once
 #ifndef SMATRIX_H
 #define SMATRIX_H
 
