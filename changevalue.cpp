@@ -32,7 +32,7 @@ void insertNode(int val, int i, int j, node **&row, node **&col)
 	tempL = row[i]->right;
 	if (tempL != nullptr)
 	{
-		while (tempL->col < i)
+		while (tempL->row < i)
 		{
 			tempL = tempL->right;
 		}
