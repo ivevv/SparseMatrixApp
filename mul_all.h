@@ -4,6 +4,6 @@
 #include "smatrix.h"
 #include <cmath>
 
-long long mul_all(node **&row, node **&col, int size, int base_elem = 0);
+long long mul_all(node **&row, node **&col, int size, int base_elem);
 
 #endif //MUL_ALL_H
