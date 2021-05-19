@@ -4,7 +4,7 @@
 #include "smatrix.h"
 #include <limits>
 
-int min(node **&row, node **&col, int size, int base_elem = 0);
-int max(node **&row, node **&col, int size, int base_elem = 0);
+int min(node **&row, node **&col, int size, int base_elem);
+int max(node **&row, node **&col, int size, int base_elem);
 
 #endif //MIN_MAX_H
