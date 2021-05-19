@@ -42,10 +42,10 @@ void clearMatrix(node **&row, node **&col, int size)
 void processMatrix(node **&row, node **&col, int size, int base_elem, std::string filename)
 {
 	getMatrix(row, col, size, base_elem, filename);
-	std::cout << "1. Sum of all elements: " << sum_all(row, col, size) << "\n"
-			  << "Multiplication of all elements: " << mul_all(row, col, size) << "\n"
-			  << "2. Minimum of the matrix: " << min(row, col, size) << "\n"
-			  << "Maximum of the martix: " << max(row, col, size) << "\n"
+	std::cout << "1. Sum of all elements: " << sum_all(row, col, size, base_elem) << "\n"
+			  << "Multiplication of all elements: " << mul_all(row, col, size, base_elem) << "\n"
+			  << "2. Minimum of the matrix: " << min(row, col, size, base_elem) << "\n"
+			  << "Maximum of the martix: " << max(row, col, size, base_elem) << "\n"
 			  << "3. Row traversal: ";
 	rowTraversal(row, size);
 	std::cout << "Column traversal: ";
