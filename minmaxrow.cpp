@@ -55,4 +55,5 @@ void minMaxRow(node **row, int size, int base_elem)
 		}
 	}
 	std::cout << min << " (row " << rowId << ")" << std::endl;
+	free(rowMax);
 }
